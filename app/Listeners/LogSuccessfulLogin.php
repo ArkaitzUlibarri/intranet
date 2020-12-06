@@ -4,7 +4,6 @@ namespace App\Listeners;
 
 use App\Models\Session;
 use Carbon\Carbon;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
@@ -25,10 +24,10 @@ class LogSuccessfulLogin
     /**
      * Handle the event.
      *
-     * @param  Login  $event
+     * @param  object  $event
      * @return void
      */
-    public function handle(Login $event)
+    public function handle($event)
     {
         Log::info('LogSuccessfulLogin@handle - New login', ['user_id' => $event->user->id]);
 
