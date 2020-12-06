@@ -35,5 +35,4 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/datatables.min.js"></script>
 <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
 {!! $dataTable->scripts() !!}
-<script src="{{ asset('js/datatables/buttons.js') }}"></script>
 @endsection
