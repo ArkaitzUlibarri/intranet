@@ -33,8 +33,9 @@ class LogSuccessfulLogin
 
         $session = new Session();
         $session->user_id = $event->user->id;
-        $session->user_agent = Request::header('User-Agent');
         $session->ip_address = Request::ip();
+        $session->user_agent = Request::header('User-Agent');
+//        $session->payload = json_decode(request()->getContent(), true);
         $session->last_activity = Carbon::now();
         $session->save();
     }
