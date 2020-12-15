@@ -1,7 +1,7 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('adminlte_css')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/datatables.min.css"/>
+@section('css')
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/datatables.min.css"/>-->
 @endsection
 
 @section('breadcrumbs', Breadcrumbs::render('contractTypes.index'))
@@ -31,9 +31,9 @@
 
 @endsection
 
-@section('adminlte_js')
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/datatables.min.js"></script>
+@section('js')
+<!--<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/datatables.min.js"></script>-->
 <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
 {!! $dataTable->scripts() !!}
-<script src="{{ asset('js/datatables/buttons.js') }}"></script>
+<!--<script src="{{ asset('js/datatables/buttons.js') }}"></script>-->
 @endsection

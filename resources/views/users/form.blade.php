@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @if(isset($user))
 @section('breadcrumbs', Breadcrumbs::render('users.edit',$user))

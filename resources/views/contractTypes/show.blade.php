@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('breadcrumbs',Breadcrumbs::render('contractTypes.show', $model) )
 
