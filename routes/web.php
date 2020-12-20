@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
@@ -31,5 +32,6 @@ Route::middleware(['auth'])->group(function () {
         'users' => UserController::class,
         'contractTypes' => ContractTypeController::class,
         'contracts' => ContractController::class,
+        'categories' => CategoryController::class,
     ]);
 });

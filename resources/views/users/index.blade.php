@@ -21,7 +21,7 @@
                     </h2>
                 </div>
                 <div class="card-body">
-                    {!! $dataTable->table(['class' => 'table table-bordered']) !!}
+                    {!! $dataTable->table(['class' => 'table table-bordered','width' => '100%']) !!}
                 </div>
             </div>
 

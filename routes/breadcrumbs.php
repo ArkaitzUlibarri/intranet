@@ -78,3 +78,27 @@ Breadcrumbs::for('contracts.edit', function ($trail, $contract) {
 });
 
 //endregion
+
+//region Contracts
+
+Breadcrumbs::for('categories.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Categories', route('categories.index'));
+});
+
+Breadcrumbs::for("categories.create", function ($trail) {
+    $trail->parent('categories.index');
+    $trail->push('New Category', route("categories.create"));
+});
+
+Breadcrumbs::for('categories.show', function ($trail, $category) {
+    $trail->parent('categories.index');
+    $trail->push($category->name, route('categories.show', $category->id));
+});
+
+Breadcrumbs::for('categories.edit', function ($trail, $category) {
+    $trail->parent('categories.show', $category);
+    $trail->push(trans('buttons.edit'), route('categories.edit', $category->id));
+});
+
+//endregion

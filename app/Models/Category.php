@@ -27,9 +27,11 @@ class Category extends Model
         'description',
     ];
 
+    const ICON = 'fas fa-boxes';
+
     public static $rules = [
         'name' => 'required|string|max:255',
-        'code' => 'required|numeric',
+        'code' => 'required|string',
         'description' => 'required|string'
     ];
 

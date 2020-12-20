@@ -4,7 +4,7 @@
 <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/datatables.min.css"/>-->
 @endsection
 
-@section('breadcrumbs', Breadcrumbs::render('contracts.index'))
+@section('breadcrumbs', Breadcrumbs::render('categories.index'))
 
 @section('content')
 
@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="float-left">
-                        <i class="{{ App\Models\Contract::ICON }}"></i> Contracts
+                        <i class="{{ App\Models\Category::ICON }}"></i> Categories
                     </h2>
                 </div>
                 <div class="card-body">

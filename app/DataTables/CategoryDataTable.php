@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Contract;
+use App\Models\Category;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ContractDataTable extends DataTable
+class CategoryDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,27 +21,18 @@ class ContractDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('contractType', function (Contract $model) {
-                return isset($model->contractType)
-                    ? $model->contractType->code . ' - ' . $model->contractType->name
-                    : null;
-            })
-            ->addColumn('action', 'contracts.action');
+            ->addColumn('action', 'categories.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Contract $model
+     * @param \App\Models\Category $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Contract $model)
+    public function query(Category $model)
     {
-        return $model->newQuery()
-            ->select('contracts.*')
-            ->with('user')
-            ->with('contractType')
-            ->withTrashed();
+        return $model->newQuery()->withTrashed();
     }
 
     /**
@@ -52,7 +43,7 @@ class ContractDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-//            ->setTableId('contract-table')
+//            ->setTableId('category-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
@@ -75,15 +66,12 @@ class ContractDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('common.id')),
-            Column::make('user.name')->title(trans('common.user')),
-            Column::make('contractType')->title(trans('common.contractType')),
-            Column::make('start_date')->title(trans('contracts.start_date')),
-            Column::make('estimated_end_date')->title(trans('contracts.estimated_end_date')),
-            Column::make('end_date')->title(trans('contracts.end_date')),
-            Column::make('week_hours')->title(trans('contracts.week_hours')),
-            Column::make('created_at')->title(trans('common.created_at')),
-            Column::make('updated_at')->title(trans('common.updated_at')),
+            Column::make('id'),
+            Column::make('name')->title(trans('categories.name')),
+            Column::make('code')->title(trans('categories.code')),
+            Column::make('description')->title(trans('categories.description')),
+            Column::make('created_at'),
+            Column::make('updated_at'),
             Column::computed('action')
                 ->title(trans('common.actions'))
                 ->exportable(false)
@@ -100,6 +88,6 @@ class ContractDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'contracts_' . date('YmdHis');
+        return 'categories_' . date('YmdHis');
     }
 }
