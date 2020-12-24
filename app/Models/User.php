@@ -4,15 +4,17 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable,SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes;
 
-      /**
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
@@ -56,12 +58,12 @@ class User extends Authenticatable
         'email' => 'required|email|unique:users,email|max:255',
     ];
 
-    public function contracts()
+    public function contracts(): HasMany
     {
         return $this->hasMany(Contract::class);
     }
 
-    public function sessions()
+    public function sessions(): HasMany
     {
         return $this->hasMany(Session::class);
     }
@@ -69,23 +71,23 @@ class User extends Authenticatable
     /**
      * The categories that belong to the user.
      */
-    public function categories()
+    public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class,'user_category');
+        return $this->belongsToMany(Category::class, 'user_category');
     }
 
     /**
      * The groups that belong to the user.
      */
-    public function groups()
+    public function groups(): BelongsToMany
     {
-        return $this->belongsToMany(Group::class,'user_group');
+        return $this->belongsToMany(Group::class, 'user_group');
     }
 
     /**
      * Return the projects which a user is manager.
      */
-    public function projects()
+    public function projects(): HasMany
     {
         return $this->hasMany(Project::class, 'manager_id');
     }

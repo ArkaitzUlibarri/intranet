@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class WorkingReport extends Model
@@ -47,32 +48,32 @@ class WorkingReport extends Model
         'admin_validation' => 'nullable|boolean',
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class)->withTrashed();
     }
 
-    public function project()
+    public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class)->withTrashed();
     }
 
-    public function group()
+    public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class)->withTrashed();
     }
 
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class)->withTrashed();
     }
 
-    public function validatedByManager()
+    public function validatedByManager(): BelongsTo
     {
         return $this->belongsTo(User::class)->withTrashed();
     }
 
-    public function validatedByAdmin()
+    public function validatedByAdmin(): BelongsTo
     {
         return $this->belongsTo(User::class)->withTrashed();
     }

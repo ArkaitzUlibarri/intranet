@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
@@ -72,7 +73,7 @@ class Teleworking extends Model
     /**
      * Get the contract that has a reduction.
      */
-    public function contract()
+    public function contract():BelongsTo
     {
         return $this->belongsTo(Contract::class);
     }

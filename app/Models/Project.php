@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -43,7 +45,7 @@ class Project extends Model
     /**
      * Get the groups for the project.
      */
-    public function groups()
+    public function groups(): HasMany
     {
         return $this->hasMany(Group::class)->orderBy('project_id', 'name', 'desc');
     }
@@ -51,7 +53,7 @@ class Project extends Model
     /**
      * Get the client record associated with the project.
      */
-    public function client()
+    public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
     }
@@ -59,7 +61,7 @@ class Project extends Model
     /**
      * Get the project manager record associated with the project.
      */
-    public function manager()
+    public function manager(): BelongsTo
     {
         return $this->belongsTo(User::class, 'manager_id');
     }

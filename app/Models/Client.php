@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -28,12 +29,14 @@ class Client extends Model
         'description',
     ];
 
+    const ICON = 'fas fa-suitcase';
+
     public static $rules = [
         'name' => 'required|string|max:255',
         'description' => 'required|string'
     ];
 
-    public function projects()
+    public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
     }

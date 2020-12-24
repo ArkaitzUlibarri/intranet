@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contract extends Model
@@ -44,12 +45,12 @@ class Contract extends Model
         'week_hours' => 'required|numeric|between:0,40',
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function contractType()
+    public function contractType(): BelongsTo
     {
         return $this->belongsTo(ContractType::class);
     }
