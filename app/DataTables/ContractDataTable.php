@@ -26,6 +26,15 @@ class ContractDataTable extends DataTable
                     ? $model->contractType->code . ' - ' . $model->contractType->name
                     : null;
             })
+            ->editColumn('created_at', function (Contract $model) {
+                return $model->created_at;
+            })
+            ->editColumn('updated_at', function (Contract $model) {
+                return $model->updated_at;
+            })
+            ->editColumn('deleted_at', function (Contract $model) {
+                return $model->deleted_at;
+            })
             ->addColumn('action', 'contracts.action');
     }
 

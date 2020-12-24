@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -19,5 +20,6 @@ class DatabaseSeeder extends Seeder
             ContractTypeSeeder::class,
             CategorySeeder::class
         ]);
+        Client::factory(10)->create();
     }
 }

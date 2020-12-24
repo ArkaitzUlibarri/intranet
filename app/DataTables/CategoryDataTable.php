@@ -21,6 +21,15 @@ class CategoryDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('created_at', function (Category $model) {
+                return $model->created_at;
+            })
+            ->editColumn('updated_at', function (Category $model) {
+                return $model->updated_at;
+            })
+            ->editColumn('deleted_at', function (Category $model) {
+                return $model->deleted_at;
+            })
             ->addColumn('action', 'categories.action');
     }
 

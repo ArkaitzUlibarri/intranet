@@ -21,6 +21,15 @@ class ContractTypeDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('created_at', function (ContractType $model) {
+                return $model->created_at;
+            })
+            ->editColumn('updated_at', function (ContractType $model) {
+                return $model->updated_at;
+            })
+            ->editColumn('deleted_at', function (ContractType $model) {
+                return $model->deleted_at;
+            })
             ->addColumn('action', 'contractTypes.action');
     }
 
@@ -46,7 +55,7 @@ class ContractTypeDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
-            ->orderBy(1,'asc')
+            ->orderBy(1, 'asc')
             ->scrollX(true)
             ->buttons(
                 Button::make('create'),

@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\Client;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class UserDataTable extends DataTable
+class ClientDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,28 +21,25 @@ class UserDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('email_verified_at', function (User $model) {
-                return $model->email_verified_at;
-            })
-            ->editColumn('created_at', function (User $model) {
+            ->editColumn('created_at', function (Client $model) {
                 return $model->created_at;
             })
-            ->editColumn('updated_at', function (User $model) {
+            ->editColumn('updated_at', function (Client $model) {
                 return $model->updated_at;
             })
-            ->editColumn('deleted_at', function (User $model) {
+            ->editColumn('deleted_at', function (Client $model) {
                 return $model->deleted_at;
             })
-            ->addColumn('action', 'users.action');
+            ->addColumn('action', 'clients.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param User $model
+     * @param Client $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(Client $model)
     {
         return $model->newQuery()->withTrashed();
     }
@@ -55,11 +52,11 @@ class UserDataTable extends DataTable
     public function html()
     {
         return $this->builder()
+//            ->setTableId('client-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
             ->orderBy(1, 'asc')
-            ->scrollX(true)
             ->buttons(
                 Button::make('create'),
                 Button::make('export'),
@@ -77,13 +74,11 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('common.id')),
-            Column::make('name')->title(trans('common.name')),
-            Column::make('email')->title(trans('common.email')),
-            Column::make('email_verified_at')->title(trans('common.email_verified_at')),
-            Column::make('created_at')->title(trans('common.created_at')),
-            Column::make('updated_at')->title(trans('common.updated_at')),
-//            Column::make('deleted_at')->title(trans('common.deleted_at')),
+            Column::make('id'),
+            Column::make('name')->title(trans('clients.name')),
+            Column::make('description')->title(trans('clients.description')),
+            Column::make('created_at'),
+            Column::make('updated_at'),
             Column::computed('action')
                 ->title(trans('common.actions'))
                 ->exportable(false)
@@ -100,6 +95,6 @@ class UserDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'users_' . date('YmdHis');
+        return 'clients_' . date('YmdHis');
     }
 }
