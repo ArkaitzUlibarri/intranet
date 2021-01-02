@@ -30,7 +30,10 @@ class CategoryDataTable extends DataTable
             ->editColumn('deleted_at', function (Category $model) {
                 return $model->deleted_at;
             })
-            ->addColumn('action', 'categories.action');
+            ->addColumn('action', 'categories.action')
+            ->setRowClass(function (Category $model) {
+                return $model->trashed() ? 'alert-danger' : '';
+            });
     }
 
     /**

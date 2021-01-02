@@ -33,7 +33,10 @@ class UserDataTable extends DataTable
             ->editColumn('deleted_at', function (User $model) {
                 return $model->deleted_at;
             })
-            ->addColumn('action', 'users.action');
+            ->addColumn('action', 'users.action')
+            ->setRowClass(function (User $model) {
+                return $model->trashed() ? 'alert-danger' : '';
+            });
     }
 
     /**

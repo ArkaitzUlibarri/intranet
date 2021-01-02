@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
@@ -35,5 +36,6 @@ Route::middleware(['auth'])->group(function () {
         'contracts' => ContractController::class,
         'categories' => CategoryController::class,
         'clients' => ClientController::class,
+        'projects' => ProjectController::class,
     ]);
 });

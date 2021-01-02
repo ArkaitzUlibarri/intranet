@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Carbon\Carbon;
 use App\Models\Client;
 use App\Models\Project;
@@ -29,7 +30,7 @@ class ProjectFactory extends Factory
             'client_id' => (Client::all())->random()->id,
             'start_date' => $this->faker->dateTimeBetween('-10 years', 'now'),
             'end_date' => null,
-    //        'manager_id' => '',
+            'manager_id' => (User::all())->random()->id,
         ];
     }
 

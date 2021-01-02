@@ -30,7 +30,10 @@ class ContractTypeDataTable extends DataTable
             ->editColumn('deleted_at', function (ContractType $model) {
                 return $model->deleted_at;
             })
-            ->addColumn('action', 'contractTypes.action');
+            ->addColumn('action', 'contractTypes.action')
+            ->setRowClass(function (ContractType $model) {
+                return $model->trashed() ? 'alert-danger' : '';
+            });
     }
 
     /**

@@ -33,6 +33,8 @@ class Project extends Model
         'manager_id',
     ];
 
+    const ICON = 'fas fa-fw fa-archive';
+
     public static $rules = [
         'name' => 'required|string|max:255',
         'description' => 'required|string',

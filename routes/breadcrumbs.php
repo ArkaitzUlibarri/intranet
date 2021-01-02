@@ -126,3 +126,27 @@ Breadcrumbs::for('clients.edit', function ($trail, $client) {
 });
 
 //endregion
+
+//region Projects
+
+Breadcrumbs::for('projects.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Projects', route('projects.index'));
+});
+
+Breadcrumbs::for("projects.create", function ($trail) {
+    $trail->parent('projects.index');
+    $trail->push('New Project', route("projects.create"));
+});
+
+Breadcrumbs::for('projects.show', function ($trail, $project) {
+    $trail->parent('projects.index');
+    $trail->push($project->name, route('projects.show', $project->id));
+});
+
+Breadcrumbs::for('projects.edit', function ($trail, $project) {
+    $trail->parent('projects.show', $project);
+    $trail->push(trans('buttons.edit'), route('projects.edit', $project->id));
+});
+
+//endregion
