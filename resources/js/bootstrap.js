@@ -12,6 +12,7 @@ try {
 
     require('bootstrap');
     require('datatables.net-bs4');
+    require( 'datatables.net-buttons-bs4' );
     var dt = require('datatables.net-bs4')(window, $);
 } catch (e) {}
 
