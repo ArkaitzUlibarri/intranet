@@ -11,13 +11,6 @@ use Illuminate\Database\Seeder;
 
 class FactorySeeder extends Seeder
 {
-    protected $users;
-    protected $clients;
-    protected $projects;
-    protected $groups;
-
-    protected $categories;
-
     /**
      * Run the database seeds.
      *
@@ -25,39 +18,25 @@ class FactorySeeder extends Seeder
      */
     public function run()
     {
-            //Initialize
-            $this->users = collect();
-            $this->clients = collect();
-            $this->projects = collect();
-            $this->groups = collect();
+        //Seed with fake values
+        Client::factory(10)
+            ->has(
+                Project::factory()
+                    ->count(2)
+                    ->state(function (array $attributes, Client $client) {
+                        return ['client_id' => $client->id];
+                    })
+                    ->hasGroups(3, function (array $attributes, Project $project) {
+                        return ['project_id' => $project->id];
+                    })
+            )
+            ->create();
 
-            $this->categories = Category::all();
+        User::factory(10)->create();
+        //Categories
+        //Groups
 
-            //Seed with fake values
-            $this->users = User::factory(5)->create();
-            $this->clients = Client::factory(5)->create();
-            $this->projects = Project::factory(15)->create();
-            $this->groups =  Group::factory(30)->create();
-
-            $this->setUserGroups();
-            $this->setUserCategories();
-    }
-
-    private function setUserGroups()
-    {
-        $this->users->each(function (User $user) {
-            $groups = $this->groups->shuffle()->take(2)->pluck('id')->toArray();
-
-            $user->groups()->attach($groups);
-        });
-    }
-
-    private function setUserCategories()
-    {
-        $this->users->each(function (User $user) {
-            $categories = $this->categories->shuffle()->take(2)->pluck('id')->toArray();
-
-            $user->categories()->attach($categories);
-        });
+        //Contract/Reduction/Teleworking
+        //Working Report
     }
 }

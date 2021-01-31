@@ -27,7 +27,7 @@ class ProjectFactory extends Factory
         return [
             'name' => $this->faker->unique()->name(),
             'description' => 'Description',
-            'client_id' => (Client::all())->random()->id,
+            'client_id' => Client::factory(),
             'start_date' => $this->faker->dateTimeBetween('-10 years', 'now'),
             'end_date' => null,
             'manager_id' => (User::all())->random()->id,
@@ -42,7 +42,9 @@ class ProjectFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Project $project) {
-            $project->name = 'Project' . ' ' . $project->id;
+            $client = $project->client;
+
+            $project->name = $client->name . ' ' . $client->id . ' '. ' Project' . ' ' . $project->id;
             $project->description = $project->name . ' ' . $project->description;
             $project->end_date = $this->faker->boolean(25) ? Carbon::parse($project->start_date)->addMonth() : null;
             $project->save();

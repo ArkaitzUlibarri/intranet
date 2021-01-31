@@ -23,7 +23,7 @@ class GroupFactory extends Factory
     public function definition()
     {
         return [
-            'project_id' => (Project::all())->random()->id,
+            'project_id' => Project::factory(),
             'name' => $this->faker->unique()->name(),
             'enabled' => $this->faker->boolean(95),
         ];
@@ -37,7 +37,9 @@ class GroupFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Group $group) {
-            $group->name = 'Group' . ' ' . $group->id;
+            $project = $group->project;
+
+            $group->name = 'Project' . ' ' . $project->id . ' ' . 'Group' . ' ' . $group->id;
             $group->save();
         });
     }
