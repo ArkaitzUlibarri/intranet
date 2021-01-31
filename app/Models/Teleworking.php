@@ -6,6 +6,32 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Teleworking
+ *
+ * @property int $id
+ * @property int $contract_id
+ * @property string $start_date
+ * @property string|null $end_date
+ * @property bool $monday
+ * @property bool $tuesday
+ * @property bool $wednesday
+ * @property bool $thursday
+ * @property bool $friday
+ * @property bool $saturday
+ * @property bool $sunday
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Contract $contract
+ * @method static \Illuminate\Database\Eloquent\Builder|Teleworking newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Teleworking newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Teleworking onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Teleworking query()
+ * @method static \Illuminate\Database\Query\Builder|Teleworking withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Teleworking withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Teleworking extends Model
 {
     use SoftDeletes;

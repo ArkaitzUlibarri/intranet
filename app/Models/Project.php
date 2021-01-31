@@ -8,6 +8,30 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * App\Models\Project
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $description
+ * @property int $client_id
+ * @property string $start_date
+ * @property string|null $end_date
+ * @property int|null $manager_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Client $client
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Group[] $groups
+ * @property-read \App\Models\User|null $manager
+ * @method static \Illuminate\Database\Eloquent\Builder|Project newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Project newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Project onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Project query()
+ * @method static \Illuminate\Database\Query\Builder|Project withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Project withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Project extends Model
 {
     use HasFactory, SoftDeletes;
@@ -49,7 +73,9 @@ class Project extends Model
      */
     public function groups(): HasMany
     {
-        return $this->hasMany(Group::class)->orderBy('project_id', 'name', 'desc');
+        return $this->hasMany(Group::class)
+            ->orderBy('project_id', 'asc')
+            ->orderByDesc('name');
     }
 
     /**

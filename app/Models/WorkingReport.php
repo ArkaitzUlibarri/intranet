@@ -6,6 +6,39 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\WorkingReport
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $report_date
+ * @property string $activity
+ * @property int|null $project_id
+ * @property int|null $group_id
+ * @property int|null $category_id
+ * @property int $time_slots
+ * @property string|null $comments
+ * @property int $manager_validation
+ * @property int|null $validated_by_manager
+ * @property int $admin_validation
+ * @property int|null $validated_by_admin
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Category|null $category
+ * @property-read \App\Models\Group|null $group
+ * @property-read \App\Models\Project|null $project
+ * @property-read \App\Models\User $user
+ * @property-read \App\Models\User $validatedByAdmin
+ * @property-read \App\Models\User $validatedByManager
+ * @method static \Illuminate\Database\Eloquent\Builder|WorkingReport newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|WorkingReport newQuery()
+ * @method static \Illuminate\Database\Query\Builder|WorkingReport onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|WorkingReport query()
+ * @method static \Illuminate\Database\Query\Builder|WorkingReport withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|WorkingReport withoutTrashed()
+ * @mixin \Eloquent
+ */
 class WorkingReport extends Model
 {
     use SoftDeletes;

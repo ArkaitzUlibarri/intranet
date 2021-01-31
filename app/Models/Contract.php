@@ -6,6 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\Contract
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $contract_type_id
+ * @property string $start_date
+ * @property string|null $estimated_end_date
+ * @property string|null $end_date
+ * @property int $week_hours
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\ContractType $contractType
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Contract onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract query()
+ * @method static \Illuminate\Database\Query\Builder|Contract withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Contract withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Contract extends Model
 {
     use SoftDeletes;
