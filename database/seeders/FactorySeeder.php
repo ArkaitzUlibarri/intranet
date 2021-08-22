@@ -18,6 +18,8 @@ class FactorySeeder extends Seeder
      */
     public function run()
     {
+        User::factory(10)->create();
+
         //Seed with fake values
         Client::factory(10)
             ->has(
@@ -32,7 +34,7 @@ class FactorySeeder extends Seeder
             )
             ->create();
 
-        User::factory(10)->create();
+
         //Categories
         //Groups
 
